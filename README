@@ -1,0 +1,103 @@
+The Kit PHP Framework is a web development system built entirely on PHP.  The
+Kit's ethos is to make the complex as simple to use as possible.
+
+The Kit provides a wealth of ready-to-use web components like horizontal and
+vertical tabbed containers; stacked containers; a gallery class for displaying
+pictures; menu bars; pre-defined web page skeletons; the link container; the
+navigation bar; X-tabs; tables with built-in line numbering, checkboxes, and
+kickers; pulldown menus; tooltips; auto-bookmarking; bar charts, both horizontal
+and vertical.
+
+But more than that, The Kit makes form handling, tables, and MySQL as absolutely
+simple to use as possible.
+
+Following are a few sample statements that demonstrate just how easy it is to
+create web components, forms, and display data in a MySQL table:
+
+
+// Output a form with two input controls of type "text":
+$form = new form;
+$form->add_input_text( 'First Name' ) ;
+$form->add_input_text( 'Last Name'  ) ;
+$form->output() ;
+
+
+// Output a table with a checkbox in the first column and three buttons labeled
+// "Check All", "Uncheck All", and "Submit Checked"...
+$table = new table_checkboxes(  'Customers' ) ;
+$table->headers( 'Name'       , 'Address'     , 'City'        ) ;
+$table->cells(   'P. Smith'   , '1419 E. Oak' , 'Mexico City' ) ;
+$table->cells(   'R. Estabar' , 'SM 23'       , 'Los Angeles' ) ;
+$table->output() ;
+
+
+// Output a horizontal menu...
+$menu = new menubar() ; // or menubar_vertical() to go vertical
+$menu->add_menu(        'Search' ) ;
+  $menu->add_item_link(   'Google' , 'http://www.google.com' ) ;
+  $menu->add_item_link(   'Yahoo'  , 'http://www.yahoo.com' ) ;
+$menu->add_menu(        'Mail' ) ;
+  $menu->add_item_link(   'Google' , 'http://www.google.com/mail' ) ;
+  $menu->add_item_link(   'Yahoo'  , 'http://www.yahoo.com/mail' ) ;
+$menu->output() ;
+
+
+// Output an entire working picture gallery with mouse-over buttons...
+echo new gallery( array( 'sunset.jpg','sunrise.png','flowers.jpg','bumblebee.jpg' ) ) ;
+
+
+// Output an image you can click...
+echo new link_image( "google.gif", "http://www.google.com" ) ;
+
+
+// Output a floating right image...
+echo new image_float_right( 'life.bmp' ) ;
+
+
+// Output a rollover image...
+echo new rollover( "life.jpg" , "helicopter.jpg" ) ;
+
+
+// Client-side image mapping...
+$image = new image( "sandcubes65.jpg"  ) ;
+$image->add_area( "Google!" , "http://www.google.com" , "0,0,50,50" ) ;
+$image->output() ;
+
+
+// Server-side image mapping...
+echo new server_side_image( 'life.bmp' ) ;
+
+
+// An unordered list...
+$unordered_list = new list_unordered() ;
+$unordered_list->add( 'An'        ) ;
+$unordered_list->add( 'Unordered' ) ;
+$unordered_list->add( 'List'      ) ;
+$unordered_list->output() ;
+
+// ... inside a blue container...
+echo new container_blue( $unordered_list ) ;
+
+// ... with padding and margins and a thicker border...
+$container = new container_blue( $unordered_list ) ;
+$container->setpadding( '1ex' ) ;
+$container->setmargin(  '1em' ) ;
+$container->setwidth_border( '5px' ) ;
+$container->output() ;
+
+// ... inside an ordered list...
+$ordered_list = new list_ordered() ;
+$ordered_list->add( 'An'            ) ;
+$ordered_list->add( 'Ordered'       ) ;
+$ordered_list->add( 'List'          ) ;
+$ordered_list->add( $unordered_list ) ;
+$unordered_list->output() ;
+
+// Some of the components above inside a definition list...
+$definition = new list_definition() ;
+$definition->add( 'A Form'            , $form           ) ;
+$definition->add( 'A Table'           , $table          ) ;
+$definition->add( 'A Menubar'         , $menu           ) ;
+$definition->add( 'An Image'          , $image          ) ;
+$definition->add( 'An Unordered List' , $unordered_list ) ;
+$definition->add( 'An Ordered List'   , $ordered_list   ) ;
